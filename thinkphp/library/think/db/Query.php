@@ -415,9 +415,8 @@ class Query
             }
             $result = $pdo->fetchColumn();
             if ($force) {
-                $result += 0;
+                $result = is_numeric($result) ? $result + 0 : $result;
             }
-
             if (isset($cache)) {
                 // 缓存数据
                 $this->cacheData($key, $result, $cache);
@@ -2081,7 +2080,7 @@ class Query
         }
 
         // 执行操作
-        $result = 0 === $sql ? 0 : $this->execute($sql, $bind);
+        $result = $this->execute($sql, $bind);
         if ($result) {
             $sequence  = $sequence ?: (isset($options['sequence']) ? $options['sequence'] : null);
             $lastInsId = $this->getLastInsID($sequence);

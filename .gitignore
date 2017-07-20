@@ -2,3 +2,5 @@
 composer.lock
 *.log
 runtime
+composer.json
+README.md

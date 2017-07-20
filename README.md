@@ -40,6 +40,7 @@ www  WEB部署目录（或者子目录）
 │  │  ├─common.php      模块函数文件
 │  │  ├─controller      控制器目录
 │  │  ├─model           模型目录
+
 │  │  ├─view            视图目录
 │  │  └─ ...            更多类库目录
 │  │
