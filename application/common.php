@@ -31,13 +31,15 @@ function getip() {
 	    $ip = reset(explode(',', $ip));
 	$data['ip'] = $ip;
 	// 根据ip获取用户的地址
-	$lbs = json_decode(file_get_contents(config('lbs.uri').'?ip='.$ip."&key=".config('lbs.key')),TRUE);
-	if($lbs['status'] == 0){
-		$data['adderss'] = $lbs['result']['ad_info']['province'].$lbs['result']['ad_info']['city'];
-	}elseif($ip == '127.0.0.1'){
+	if($ip == "127.0.0.1"){
 		$data['address'] = '本地';
 	}else{
-		$data['address'] = '';
+		$lbs = json_decode(file_get_contents(config('lbs.uri').'?ip='.$ip."&key=".config('lbs.key')),TRUE);
+		if($lbs['status'] == 0){
+			$data['adderss'] = $lbs['result']['ad_info']['province'].$lbs['result']['ad_info']['city'];
+		}else{
+			$data['address'] = '';
+		}
 	}
 	return $data;
 }
@@ -87,5 +89,20 @@ function get_used_status(){
 		'memory'	=>	$mem_usage,
 		'cpu'		=>	$cpu_usage
 	];
-	print_r($data);
+}
+
+function trimarray($array = array()){
+	foreach ($array as $key => $value) {
+		$rray[$key] = trim($value);
+	}
+	return $array;
+}
+
+function output($data){
+	$result = [
+		'status'	=>	200,
+		'data'		=>	$data,
+	];
+	echo json_encode($result);
+	exit;
 }

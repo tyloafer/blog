@@ -1,5 +1,6 @@
 <?php
 namespace app\admin\controller;
+use qcloudcos\Cosapi;
 
 class Index extends Common {
 	function __construct() {
@@ -13,14 +14,10 @@ class Index extends Common {
     	$this->assign('admin',$this->admin);
     	return $this->fetch('index');
     }
-
-    public function index2(){
-    	echo 333333;
-    }
-
-    public function test(){
-        echo time()."<br />";
-        echo date('Y-m-d H:i:s',time());
+    public function issue($title = '', $cate = 0){
+        if($cate){
+            
+        }
     }
 
 }

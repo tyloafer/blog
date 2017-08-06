@@ -104,7 +104,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @param $page
      * @return string
      */
-    protected function url($page)
+    public function url($page)
     {
         if ($page <= 0) {
             $page = 1;

@@ -4,3 +4,4 @@ composer.lock
 runtime
 composer.json
 README.md
+database.php

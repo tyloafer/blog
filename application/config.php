@@ -141,7 +141,9 @@ return [
     ],
 
     // 视图输出字符串内容替换
-    'view_replace_str'       => [],
+    'view_replace_str'       => [
+        '__HTMLVENDOR__'    =>  'static/vendor',
+    ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -265,11 +267,13 @@ return [
         'key' =>  'XUOBZ-5WTRP-VGVDD-VCNBZ-BGHKE-DWFM4',
     ],
 
-    // 腾讯监控API
+    // 腾讯监控API  cos api
     "monitor"  =>   [
+        'appId'     =>  '1253518569',
         'secretId'  =>  'AKIDQcYEepoiSwA8qJ4TBdplQqzsUqBHfoBJ',
         'secretKey' =>  '1nMglbCYmmX4LK3XljRt50f4EDwPcaIk',
     ],
+    'imgUrl'    =>  'http://blog-1253518569.cossh.myqcloud.com',
 ];
 
 
