@@ -7,10 +7,22 @@ class Index extends Common {
 		parent::__construct();
 	}
     public function index() {
-    	// dump(get_defined_constants());
+        set_time_limit(180);
         $metricName = ['cpu_usage','cpu_usage','cpu_loadavg','mem_used','mem_usage','disk_read_traffic','disk_write_traffic','disk_io_await'];
-        // $monitor = $this->monitor($metricName);
-        // $this->assign('monitor', $monitor);
+        $monitor = $this->monitor($metricName);
+        // 构建时间数组
+        $now_time = time();
+        $time_array = [];
+        for($time = strtotime(date("Y-m-d", $now_time)); $time < $now_time; $time = $time+300){
+            $time_array[] = date("m-d H:i", $time);
+        }
+
+        $this->assign('time_array', '"'.implode('","', $time_array).'"');
+        // 服务器数据字符串
+        foreach ($monitor as $key => $value) {
+            $monitor[$key]['data'] = '"'.implode('","', $value['dataPoints']).'"';
+        }
+        $this->assign('monitor', $monitor);
     	$this->assign('admin',$this->admin);
     	return $this->fetch('index');
     }

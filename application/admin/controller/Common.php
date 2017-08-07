@@ -16,6 +16,8 @@ class Common extends Controller{
 		$this->admin_ip = getip();
 		$this->admin = session('admin', '', 'admin');
 		if(strtolower(request()->controller()) != 'login' && !$this->admin){
+			header("Location:".url('login/index'));
+		}elseif(strtolower(request()->controller()) != 'login' && $this->admin){                   // 存在session信息但是没有yonghuip和浏览器类型
 			if(!($this->admin_ip && $_SERVER['HTTP_USER_AGENT'])){
 				// 根据用户IP和用户浏览器类型来判断用户是否是正常浏览
 				session(null, 'admin');
@@ -62,12 +64,9 @@ class Common extends Controller{
 		$secretKey = config('monitor.secretKey');
 		$params = [
 			"Action"             => "GetMonitorData",
-			// "Nonce"              => rand(100000,999999),
 			"Region"             => "sh",
 			"SecretId"           => $secretId,
-			// "Timestamp"          => time(),
 			'namespace'          =>	'qce/cvm',
-			// "metricName"         =>	'cpu_usage',
 			"dimensions.0.name"  =>	'unInstanceId',
 			"dimensions.0.value" =>	'ins-eukbmvkz',
     	];
@@ -90,7 +89,6 @@ class Common extends Controller{
 		        );
 			curl_setopt_array($ch, $opt);
 			$data[$metricName] = json_decode(curl_exec($ch), true);
-
     	}
 		curl_close($ch);
 		return $data;
