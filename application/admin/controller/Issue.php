@@ -10,8 +10,17 @@ class Issue extends Common {
 		$this->assign('admin', $this->admin);
 	}
 
-	function index() {
-		$issues = $this->db->name('issue')->where(['is_del' => 0])->order('add_time desc')->paginate(10,false,['query' => request()->param()]);
+	function index($cate_id = 0, $title = '') {
+		$condition['is_del'] = 0;
+		if($cate_id){
+			$condition['cate_id'] = get_children_cate($cate_id);
+		}
+		if($title){
+			$condition['title'] = ['like','%'.$title.'%'];
+		}
+		$this->assign('cate_id', $cate_id);
+		$this->assign('title', $title);
+		$issues = $this->db->name('issue')->where($condition)->order('add_time desc')->paginate(10,false,['query' => request()->param()]);
 		// 如果当前传入的页面大于总页数或小于第一页
 		if(input("page") > $issues->lastPage()){
 			header("Location:".$issues->url($issues->lastPage()));
@@ -21,6 +30,11 @@ class Issue extends Common {
 		}
 		$this->assign('issues', $issues);
 		return $this->fetch();
+	}
+
+	// 获取子分类
+	function get_children_cate($cate_id = 0){
+
 	}
 
 	function add($id = 0){
@@ -40,6 +54,7 @@ class Issue extends Common {
 		$tags = $this->db->name('tags')->column('value');
 		output($tags);
 	}
+
 
 	// 文章上传
 	function update($id = 0){
