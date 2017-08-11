@@ -59,12 +59,12 @@ function get_used_status(){
 	$mem_info = explode(",",$sys_info[5]); //内存占有量 数组
 
 	//正在运行的进程数
-	$tast_running = trim(trim($tast_info[1],'running')); 
+	$tast_running = trim(trim($tast_info[1],'running'));
 	//CPU占有量
 	$cpu_usage = trim(trim($cpu_info[0],'Cpu(s): '),'%us');  //百分比
 
 	//内存占有量
-	$mem_total = trim(trim($mem_info[0],'Mem: '),'k total');  
+	$mem_total = trim(trim($mem_info[0],'Mem: '),'k total');
 	$mem_used = trim($mem_info[1],'k used');
 	$mem_usage = round(100*intval($mem_used)/intval($mem_total),2);  //百分比
 
@@ -77,7 +77,7 @@ function get_used_status(){
 	$hd_avail = trim($hd[3],'G'); //磁盘可用空间大小 单位G
 	$hd_usage = trim($hd[4],'%'); //挂载点 百分比
 	//print_r($hd);
-	/*硬盘使用率 end*/  
+	/*硬盘使用率 end*/
 
 	//检测时间
 	$fp = popen("date +\"%Y-%m-%d %H:%M\"","r");
@@ -91,6 +91,16 @@ function get_used_status(){
 	];
 }
 
+// 更新数组的主键为指定的列
+function array_change_key($array, $column){
+	$tmp = [];
+	foreach ($array as $key => $value) {
+		$tmp[$value[$column]] = $value;
+	}
+	return $tmp;
+}
+
+// 去除数组的空格
 function trimarray($array = array()){
 	foreach ($array as $key => $value) {
 		$rray[$key] = trim($value);
@@ -98,6 +108,7 @@ function trimarray($array = array()){
 	return $array;
 }
 
+// json输出
 function output($data){
 	$result = [
 		'status'	=>	200,
@@ -105,4 +116,27 @@ function output($data){
 	];
 	echo json_encode($result);
 	exit;
+}
+
+// json输出错误
+function error($data, $status = '80001'){
+	$result = [
+		'status'	=>	$code,
+		'data'		=>	$data,
+	];
+	echo json_encode($result);
+	exit;
+}
+
+// 树状图转成二维数组
+function tree_to_array($tree, $deep, $column, &$array){
+	$tmp = $tree;
+	unset($tmp[$column]);
+	$tmp['deep'] = $deep;
+	$array[] = $tmp;
+	if(isset($tree[$column]) && is_array($tree[$column])){
+		foreach ($tree[$column] as $key => $value) {
+			tree_to_array($value, $deep+1, $column, $array);
+		}
+	}
 }

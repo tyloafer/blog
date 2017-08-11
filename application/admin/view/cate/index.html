@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<link rel="stylesheet" href="__CSS__/amazeui.tree.min.css"/>
+<script src="__JS__/amazeui.tree.min.js"></script>
+<body>
+<style type="text/css">
+    table td{
+        text-align: center;
+    }
+    table th{
+        text-align: center;
+    }
+    .am-icon{
+        cursor: pointer;
+    }
+    .am-icon-check,.am-icon-close{
+        cursor: pointer;
+    }
+    .am-dimmer {
+        z-index: 1080;
+    }
+    .am-modal-dialog {
+        color: #000;
+    }
+</style>
+<script src="__JS__/theme.js"></script>
+<div class="am-g tpl-g">
+    {include file="Public:header"}
+    {include file="Public:left"}
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title  am-cf">文章列表</div>
+                        </div>
+                        <div class="widget-body  am-fr">
+                        <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+                            <div class="am-modal-dialog">
+                                <div class="am-modal-hd" style="padding-bottom: 30px;">Amaze UI</div>
+                                <div class="am-modal-bd">
+                                    <form class="am-form">
+                                        <fieldset style="margin: -10px;">
+                                        <div class="am-form-group" >
+                                            <div class="am-avg-sm-6 am-fl am-sm-text-right" style="padding-left: 100px;">分类名称</div>
+                                            <div class="am-selected am-dropdown"><input type="password" class="am-avg-sm-8 am-fr " style="height: 32px;" id="doc-ipt-pwd-1"  placeholder=""></div>
+                                        </div>
+                                        <div class="am-form-group" >
+                                            <div class="am-avg-sm-6 am-fl am-sm-text-right" style="padding-left: 100px;">分类排序</div>
+                                            <div class="am-selected am-dropdown"><input type="password" class="am-avg-sm-8 am-fr " style="height: 32px;" id="doc-ipt-pwd-1"  placeholder=""></div>
+                                        </div>
+
+                                        <div class="am-form-group">
+                                            <div  class="am-avg-sm-6 am-fl am-sm-text-right" style="padding-left: 100px;">分类层级</div>
+                                                <select  class="am-avg-sm-8 am-fl" data-am-selected="{btnSize: 'sm'}">
+                                                    <option value="0"></option>
+                                                    {foreach $cates as $cate}
+                                                    <option value="{$cate.cate_id}">{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$cate['deep'])}{$cate.cate_name}</option>
+                                                    {/foreach}
+                                                </select>
+                                        </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="am-modal-footer">
+                                    <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                                    <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+                                </div>
+
+                            </div>
+                        </div>
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                <div class="am-form-group">
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <a href="{:url('issue/add')}"><button type="button" class="am-btn am-btn-default am-btn-success" style="font-size: 1.2rem"><span class="am-icon-plus"></span> 新增</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-u-sm-12">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: left;">分类id</th>
+                                            <th>分类名称</th>
+                                            <th>文章总数</th>
+                                            <th>分类排序</th>
+                                            <th>分类显示</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foreach $cates as $cate}
+                                        <tr class="gradeX" deep="{$cate.deep}">
+                                        <!-- css样式   am-icon-plus-square-o未展开   am-icon-minus-square-o展开 -->
+                                            <td style="text-align: left;">{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$cate['deep'])}<span class="{if $cate.sub}am-icon am-icon-minus-square-o{else}am-icon-github{/if}"  deep="{$cate.deep}"></span>&nbsp;&nbsp;{$cate.cate_id}</td>
+                                            <td>{$cate.cate_name}</td>
+                                            <td>{$cate.count}</td>
+                                            <td>{$cate.cate_sort}</td>
+                                            <td><i class="{if $cate.is_show}cate_check am-icon-check{else}cate_check am-icon-close{/if}" cate_id="{$cate.cate_id}"></i></td>
+                                            <td>
+                                                <div class="tpl-table-black-operation">
+                                                    <a class="doc-prompt-toggle" href="javascript:void(0)">
+                                                        <i class="am-icon-pencil"></i> 编辑
+                                                    </a>
+                                                    <a href="{:url('issue/del',['id' => $issue.id])}" class="tpl-table-black-operation-del">
+                                                        <i class="am-icon-trash"></i> 删除
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                        <!-- more data -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="Public:script"}
+</body>
+<script type="text/javascript">
+    // 展开合并函数
+    $(".am-icon").click(function(){
+        var style;
+        var now_class = $(this).attr('class');
+        if(now_class == 'am-icon am-icon-plus-square-o'){
+            $(this).removeClass('am-icon-plus-square-o');
+            $(this).addClass('am-icon-minus-square-o');
+            style = 'table-row';
+        }else{
+            $(this).addClass('am-icon-plus-square-o');
+            $(this).removeClass('am-icon-minus-square-o');
+            style = 'none';
+        }
+        var length = $(this).parents('tbody').find('tr').length;
+        var index = $(this).parents('tr').index();
+        var deep = $(this).attr('deep');
+        // 从当前行向下循环，遇到同级停止
+        for(i = index+1; i < length; i++){
+            if($($(this).parents('tbody').find('tr')[i]).attr('deep') > deep){
+                // 改行是点击行的子集元素，隐藏
+                $($(this).parents('tbody').find('tr')[i]).css('display', style);
+            }else{
+                break;
+            }
+        }
+    });
+
+    // 显示或关闭分类
+    $(".cate_check").click(function(){
+        var is_show = 1;
+        if($(this).attr('class') == 'cate_check am-icon-check'){
+            // 此时关闭分类
+            is_show = 0;
+            $(this).removeClass('am-icon-check');
+            $(this).addClass('am-icon-close');
+        }else{
+            $(this).addClass('am-icon-check');
+            $(this).removeClass('am-icon-close');
+        }
+        // 获取该分类的id
+        var cate_id = $(this).attr('cate_id');
+        // ajax修改分类
+        $.ajax({
+            url: '{:url("cate/update")}',
+            data: {is_show: is_show, cate_id: cate_id}
+        })
+
+    });
+
+    // 分类修改弹窗
+    $(function() {
+        $('.doc-prompt-toggle').on('click', function() {
+            $('#my-prompt').modal({
+                relatedTarget: this,
+                onConfirm: function(e) {
+                    alert('你输入的是：' + e.data || '')
+                },
+            });
+        });
+        // 修改弹窗的样式
+        $('.am-modal-bd .am-selected-btn').css({
+            'color': '#888',
+            "border": '1px solid #dedede',
+        });
+        $('.am-modal-bd .am-dropdown-toggle').css({
+            'background': '#fff',
+            'color': '#888'
+        })
+    });
+</script>
+</html>

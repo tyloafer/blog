@@ -32,17 +32,14 @@ class Issue extends Common {
 		return $this->fetch();
 	}
 
-	// 获取子分类
-	function get_children_cate($cate_id = 0){
-
-	}
-
 	function add($id = 0){
+		error_reporting(E_ALL & ~E_NOTICE);
 		if($id){
 			$issue = $this->db->name('issue')->where(['id' => $id])->find();
 			if(!$issue){
 				return $this->alert('你所编辑的文章不存在', '', url('issue/index'));
 			}
+			$issue['is_top_time'] = @date('Y-m-d', $issue['is_top_time']);
 			$this->assign('issue', $issue);
 		}
 		$this->assign('id', $id);
