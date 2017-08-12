@@ -121,7 +121,7 @@ function output($data){
 // json输出错误
 function error($data, $status = '80001'){
 	$result = [
-		'status'	=>	$code,
+		'status'	=>	$status,
 		'data'		=>	$data,
 	];
 	echo json_encode($result);

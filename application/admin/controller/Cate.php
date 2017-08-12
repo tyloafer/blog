@@ -75,17 +75,52 @@ class Cate extends Common {
 		}
 	}
 
+	function get_cate_data($cate_id){
+		if(!$cate_id){
+			error('缺少cate_id');
+		}
+		$data = $this->db->name('cate')->where(['cate_id' => $cate_id])->find();
+		if(empty($data)){
+			error('暂无此分类信息');
+		}else{
+			output($data);
+		}
+	}
+
+	/**
+	 * 修改添加分类信息
+	 * @return [type] [description]
+	 */
 	function update(){
 		$args = ['cate_id', 'cate_name', 'parent_id', 'cate_sort', 'is_show'];
 		$data = input();
-		if(!isset($data['cate_id'])){
-			return error('缺少cate_id');
-		}
 		foreach ($data as $key => $value) {
 			if(!in_array($key, $args)){
 				unset($data[$key]);
 			}
 		}
-		$this->db->name('cate')->update($data);
+		if(empty($data['cate_id'])){
+			$this->db->name('cate')->insert($data);
+			return $this->alert('添加分类成功', '', url('cate/index'));
+		}else{
+			$this->db->name('cate')->update($data);
+			return $this->alert('修改分类成功', '', url('cate/index'));
+		}
 	}
+
+	/**
+	 * 删除分类
+	 */
+	function del($cate_id = 0){
+		if(!$cate_id){
+			error('缺少分类信息');
+		}
+		// 获取子分类
+		$cate = $this->get_cate_tree($cate_id);
+		$cates = array_column($cate, 'cate_id');
+		$cates[] = $cate_id;
+		$this->db->name('cate')->delete($cates);
+		return $this->alert("删除分类成功", "", url('cate/index'));
+	}
+
 }
