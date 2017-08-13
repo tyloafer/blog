@@ -28,27 +28,23 @@
                                         </div>
                                     </div>
                                 </div>
+                                <form action="" method="get">
                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
                                     <div class="am-form-group tpl-table-list-select">
-                                        <select data-am-selected="{btnSize: 'sm'}">
-											<option value="0">所有类别</option>
-											<option value="0">IT业界</option>
-											<option value="0">数码产品</option>
-											<option value="0">笔记本电脑</option>
-											<option value="0">平板电脑</option>
-											<option value="0">只能手机</option>
-											<option value="0">超极本</option>
+                                        <select data-am-selected="{btnSize: 'sm'}" name="cate_id">
+											<option value="0" {if $cate_id == 0}selected{/if}>请选择分类</option>
+                                            {foreach $cates as $cate}
+                                            <option value="{$cate.cate_id}"  {if $cate_id == $cate.cate_id}selected{/if}>{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$cate['deep'])}{$cate.cate_name}</option>
+                                            {/foreach}
 										</select>
                                     </div>
                                 </div>
-                                <form action="" method="get">
                                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                            <input type="text" name="title" value="{$title}" class="am-form-field ">
-                                            <span class="am-input-group-btn" style="position: relative;">
-    											<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
-    										</span>
-                                        
+                                        <input type="text" name="title" value="{$title}" class="am-form-field ">
+                                        <span class="am-input-group-btn" style="position: relative;">
+											<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
+										</span>
                                     </div>
                                 </div>
                                 </form>
@@ -75,7 +71,7 @@
                                                 <td>{$issue.title}</td>
                                                 <td>{$issue.author}</td>
                                                 <td>{:date('Y-m-d H:i:s', $issue.add_time)}</td>
-                                                <td>{$issue.cate_id}</td>
+                                                <td>{$issue.cate_name}</td>
                                                 <td>{$issue.keywords}</td>
                                                 <td>{$issue.description}</td>
                                                 <td>

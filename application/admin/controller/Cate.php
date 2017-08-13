@@ -12,15 +12,17 @@ class Cate extends Common {
 
 	// 分类列表
 	function index(){
+		echo input('target');
 		error_reporting(E_ALL & ~E_NOTICE);
-		$array = $this->db->name('cate')->order('cate_sort')->select();
-		// print_r($this->get_cate_tree(0, $array, 'tree'));
-		$cates = $this->get_cate_tree(0, $array);
+		$cateModel = Model('Cate');
+		$target = input('target');
+		$array = $this->db->name('cate')->where(['target' => $target])->order('cate_sort')->select();
+		$cates = $cateModel->get_cate_tree(0, $array);
 		// 获取全部文章的cate
 		$issues = $this->db->name('issue')->field('id, cate_id')->where(['is_del' => 0])->select();
 		// 循环获取每个分类下的子分类
 		foreach ($cates as $key => $cate) {
-			$sub_cate = $this->get_cate_tree($cate['cate_id'], $array);
+			$sub_cate = $cateModel->get_cate_tree($cate['cate_id'], $array);
 			$sub_cate = array_merge(array($cate['cate_id']), array_column($sub_cate, 'cate_id'));
 			$count = 0;
 			// 循环查找分类下的文章总数
@@ -39,40 +41,6 @@ class Cate extends Common {
 		}
 		$this->assign('cates', $cates);
 		return $this->fetch();
-	}
-
-	/**
-	 * 根据parent_id获取其子分类
-	 * @param  integer $cate_id [description]
-	 * @param  array   $array   要寻找的数组，不传则从数据库获取
-	 * @param  string  $type    [返回的类型  tree:array]
-	 * @return [type]           [description]
-	 */
-	function get_cate_tree($cate_id = 0, $array = array(), $type = 'array'){
-		if(empty($array)){
-			$array = $this->db->name('cate')->order('cate_sort')->select();
-		}
-		$rows = array_change_key($array, 'cate_id');
-		$tree = [];
-		foreach ($rows as $key => $value) {
-			if($value['parent_id'] != $cate_id){
-				$rows[$value['parent_id']]['sub'][] = &$rows[$key];
-			}else{
-				// 此时寻找到我们需要的最深处 parent_id = 0
-				$tree[] = &$rows[$key];
-			}
-		}
-		if($type == 'array'){
-			$tree_to_array = [];
-			foreach ($tree as $key => $value) {
-				tree_to_array($value, 0, 'sub', $tree_to_array);
-			}
-			return $tree_to_array;
-		}elseif($type == 'tree'){
-			return $tree;
-		}else{
-			return null;
-		}
 	}
 
 	function get_cate_data($cate_id){
@@ -101,10 +69,10 @@ class Cate extends Common {
 		}
 		if(empty($data['cate_id'])){
 			$this->db->name('cate')->insert($data);
-			return $this->alert('添加分类成功', '', url('cate/index'));
+			return $this->alert('添加分类成功', '', url('cate/index', ['target' => 'issue']));
 		}else{
 			$this->db->name('cate')->update($data);
-			return $this->alert('修改分类成功', '', url('cate/index'));
+			return $this->alert('修改分类成功', '', url('cate/index', ['target' => 'issue']));
 		}
 	}
 
@@ -116,11 +84,11 @@ class Cate extends Common {
 			error('缺少分类信息');
 		}
 		// 获取子分类
-		$cate = $this->get_cate_tree($cate_id);
+		$cate = $cateModel->get_cate_tree($cate_id);
 		$cates = array_column($cate, 'cate_id');
 		$cates[] = $cate_id;
 		$this->db->name('cate')->delete($cates);
-		return $this->alert("删除分类成功", "", url('cate/index'));
+		return $this->alert("删除分类成功", "", url('cate/index', ['target' => 'issue']));
 	}
 
 }

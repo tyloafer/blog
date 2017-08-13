@@ -60,9 +60,10 @@
                                         <label for="cate_id" class="am-u-sm-3 am-form-label">文章分类 <span class="tpl-form-line-small-title">Category</span></label>
                                         <div class="am-u-sm-9">
                                             <select data-am-selected="{searchBox: 1}" id="cate_id" name="cate_id" style="display: none;">
-											    <option value="1" {if $id && $issue.cate_id == 1}selected{/if}>-The.CC</option>
-											    <option value="2" {if $id && $issue.cate_id == 2}selected{/if}>夕风色</option>
-											    <option value="3" {if $id && $issue.cate_id == 3}selected{/if}>Orange</option>
+											    <option value="0" {if $issue.cate_id == 0}selected{/if}>顶级分类</option>
+                                                {foreach $cates as $cate}
+                                                <option value="{$cate.cate_id}"  {if $cate.cate_id == $issue.cate_id}selected{/if}>{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$cate['deep'])}{$cate.cate_name}</option>
+                                                {/foreach}
 											</select>
 
                                         </div>

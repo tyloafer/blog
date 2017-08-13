@@ -12,15 +12,22 @@ class Issue extends Common {
 
 	function index($cate_id = 0, $title = '') {
 		$condition['is_del'] = 0;
+		// 获取分类
+		$cateModel = Model('Cate');
+		$cateInfo = $this->db->name('cate')->where(['target' => 'issue'])->select();
+		$cates = $cateModel->get_cate_tree(0, $cateInfo);
+		$this->assign('cates', $cates);
+
 		if($cate_id){
-			$condition['cate_id'] = get_children_cate($cate_id);
+			$cate_ids = array_merge(array_column($cateModel->get_cate_tree($cate_id, $cateInfo), 'cate_id'), array($cate_id));
+			$condition['c.cate_id'] = ['in', implode(',', $cate_ids)];
 		}
 		if($title){
 			$condition['title'] = ['like','%'.$title.'%'];
 		}
 		$this->assign('cate_id', $cate_id);
 		$this->assign('title', $title);
-		$issues = $this->db->name('issue')->where($condition)->order('add_time desc')->paginate(10,false,['query' => request()->param()]);
+		$issues = $this->db->name('issue')->field('i.*, c.cate_name')->alias('i')->join('cate c', 'i.cate_id = c.cate_id', 'left')->where($condition)->order('add_time desc')->paginate(10,false,['query' => request()->param()]);
 		// 如果当前传入的页面大于总页数或小于第一页
 		if(input("page") > $issues->lastPage()){
 			header("Location:".$issues->url($issues->lastPage()));
@@ -33,7 +40,12 @@ class Issue extends Common {
 	}
 
 	function add($id = 0){
-		error_reporting(E_ALL & ~E_NOTICE);
+		// error_reporting(E_ALL & ~E_NOTICE);
+		// 获取分类
+		$cateModel = Model('Cate');
+		$cateInfo = $this->db->name('cate')->where(['target' => 'issue'])->select();
+		$cates = $cateModel->get_cate_tree(0, $cateInfo);
+		$this->assign('cates', $cates);
 		if($id){
 			$issue = $this->db->name('issue')->where(['id' => $id])->find();
 			if(!$issue){
@@ -56,9 +68,6 @@ class Issue extends Common {
 	// 文章上传
 	function update($id = 0){
 		set_time_limit(180);
-		// echo "<pre>";
-		// print_r($_POST);
-		// exit;
 		$cosapi = new Cosapi(config('monitor.appId'), config('monitor.secretId'), config('monitor.secretKey'));
 		$cosapi->setRegion('sh');
 		$cosapi->setTimeout(180);
@@ -66,6 +75,9 @@ class Issue extends Common {
 		$data = $_POST;
 		$data['is_top_time'] = strtotime($_POST['is_top_time']);
 		$data['add_time'] = time();
+		// 获取标签
+		$tags = explode(',', $_POST['tag']);
+		$tags = trimarray($tags);
 		$this->db->startTrans();
 		try{
 			if(!empty($_FILES['pic']) && $_FILES['pic']['error'] == 0){
@@ -109,6 +121,20 @@ class Issue extends Common {
 				if(!$this->db->name('issue')->where(['id' => $id])->update($data)){
 					throw new \Exception('更新文章失败');
 				}
+				// 如果更新文章 则标签可能删除，此时删除该标签里面的该文章id
+				$tags_diff = array_diff(explode(',', $issue['tag']), $tags);
+				if(!empty($tags_diff)){
+					$tags_needs_handle = $this->db->name('tags')->field('tag_id, issue_ids')->where(['value' => ['in', implode(',', $tags_diff)]])->select();
+					$update_data = [];
+					foreach ($tags_needs_handle as $key => $value) {
+						if(empty($value)){
+							continue;
+						}
+						$update_data[] = '('.$value['tag_id'].', "'.implode(',', array_diff(explode(',', $value['issue_ids']), array($id))).'")';
+					}
+					$insertsql = "insert into ".config('database.prefix')."tags (tag_id, issue_ids) values ".implode(',', $update_data)." on duplicate key update issue_ids = values(issue_ids)";
+					$this->db->query($insertsql);
+				}
 			}else{
 				if(!$this->db->name('issue')->insert($data)){
 					throw new \Exception("新增文章失败", 1);
@@ -117,8 +143,6 @@ class Issue extends Common {
 			}
 
 			// 处理标签`
-			$tags = explode(',', $_POST['tag']);
-			$tags = trimarray($tags);
 			$tag_data = $this->db->name('tags')->where('value in ("'.implode('","',$tags).'")')->select();
 			if($tag_data){
 				foreach ($tag_data as $key => $value) {
@@ -128,14 +152,19 @@ class Issue extends Common {
 			// 生成更新数据
 			$insert_data = [];
 			foreach ($tags as $key => $tag) {
+				if(empty($tag)){
+					continue;
+				}
 				$tag_data[$tag][] = $id;
 				// id去重
 				$tag_data[$tag] = implode(',',array_unique($tag_data[$tag]));
 				$insert_data[] = "('$tag', '$tag_data[$tag]')";
 			}
-			$insertsql = "insert into ".config('database.prefix')."tags (value, issue_ids) values ".implode(',', $insert_data)." on duplicate key update issue_ids = values(issue_ids)";
-			if($this->db->query($insertsql) === false){
-				throw new \Exception("标签更新失败");
+			if(!empty($insert_data)){
+				$insertsql = "insert into ".config('database.prefix')."tags (value, issue_ids) values ".implode(',', $insert_data)." on duplicate key update issue_ids = values(issue_ids)";
+				if($this->db->query($insertsql) === false){
+					throw new \Exception("标签更新失败");
+				}
 			}
 			$this->db->commit();
 		}catch (\Exception $e) {
@@ -145,7 +174,7 @@ class Issue extends Common {
 			}
 			return $this->alert($e->getMessage(), '', 'javascript:history.go(-1)');
 		}
-		return $this->alert('添加文章成功', '', url("issue/index"));
+		return $this->alert('编辑文章成功', '', url("issue/index"));
 	}
 
 	// 删除文章
