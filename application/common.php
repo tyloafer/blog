@@ -103,7 +103,7 @@ function array_change_key($array, $column){
 // 去除数组的空格
 function trimarray($array = array()){
 	foreach ($array as $key => $value) {
-		$rray[$key] = trim($value);
+		$array[$key] = trim($value);
 	}
 	return $array;
 }

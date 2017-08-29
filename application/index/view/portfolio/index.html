@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body  id="portfolio-title-three-m">
+	<div id="main-wrapper">
+        <!-- offcanvas-menu start -->
+        {include file="Public:menu"}
+        <!-- offcanvas-menu end -->
+        <div class="offcanvas-pusher">
+          <div class="content-wrapper">
+			<div class="outer-wrapper">
+
+	<!-- HEADER -->
+	{include file="Public:header"}
+
+	<!-- PAGE HEADER -->
+	<div class="page_header">
+		<div class="page_header_parallax">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Works</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bcrumb-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="bcrumbs">
+							<li><a href="{:url('index/index')}"><i class="fa fa-home"></i> 首页</a></li>
+							<li>作品</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- INNER CONTENT -->
+	<div class="inner-content">
+		<div class="container">
+			<section id="portfolio-section">
+				<div id="portfolio-home" class="isotope tiles folio-boxed-3col">
+					{foreach $works as $work}
+					<div class="project-item">
+							<div class="project-gal">
+								{if $work.img}
+								<img src="{:config('imgUrl')}{$work.img}" class="img-responsive" alt="">
+								{else}
+								<img src="__IMG__/projects/1.jpg" class="img-responsive" alt="">
+								{/if}
+							</div>
+							<a href="{:url('portfolio/detail', ['id' => $work.id])}">
+							<div class="overlay-folio2">
+								<div class="project-info">
+									<h2>{$work.title}</h2>
+									<p onclick="window.open('{$work.link}'); return false;" style="cursor: pointer;">直接访问</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					{/foreach}
+				</div>
+				<!-- 编辑分页样式 -->
+				<style type="text/css" media="screen">
+					.page_nav ul {
+						width: 100%;
+						text-align: center;
+					}
+					.page_nav ul li{
+						float: left;
+					}
+					.am-active a{
+						background-color: #555;
+					}
+				</style>
+				<div class="page_nav">
+				{if $works}
+				{$works->render()}
+				{/if}
+				</div>
+			</section>
+		</div>
+	</div>
+	{include file="Public:footer"}
+</div>
+          </div> <!-- /.content-wrapper -->
+        </div> <!-- .offcanvas-pusher -->
+    </div><!-- /#main-wrapper -->
+
+    <!-- Preloader -->
+	{include file="Public:js"}
+
+</body>
+</html>
+
+
+
+
+

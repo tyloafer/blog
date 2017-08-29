@@ -12,14 +12,12 @@ class Cate extends Common {
 
 	// 分类列表
 	function index(){
-		echo input('target');
-		error_reporting(E_ALL & ~E_NOTICE);
 		$cateModel = Model('Cate');
 		$target = input('target');
 		$array = $this->db->name('cate')->where(['target' => $target])->order('cate_sort')->select();
 		$cates = $cateModel->get_cate_tree(0, $array);
 		// 获取全部文章的cate
-		$issues = $this->db->name('issue')->field('id, cate_id')->where(['is_del' => 0])->select();
+		$issues = $this->db->name($target)->field('id, cate_id')->where(['is_del' => 0])->select();
 		// 循环获取每个分类下的子分类
 		foreach ($cates as $key => $cate) {
 			$sub_cate = $cateModel->get_cate_tree($cate['cate_id'], $array);
@@ -60,7 +58,7 @@ class Cate extends Common {
 	 * @return [type] [description]
 	 */
 	function update(){
-		$args = ['cate_id', 'cate_name', 'parent_id', 'cate_sort', 'is_show'];
+		$args = ['cate_id', 'cate_name', 'parent_id', 'cate_sort', 'is_show', 'target'];
 		$data = input();
 		foreach ($data as $key => $value) {
 			if(!in_array($key, $args)){
@@ -69,10 +67,10 @@ class Cate extends Common {
 		}
 		if(empty($data['cate_id'])){
 			$this->db->name('cate')->insert($data);
-			return $this->alert('添加分类成功', '', url('cate/index', ['target' => 'issue']));
+			return $this->alert('添加分类成功', '', url('cate/index', ['target' => $data['target']]));
 		}else{
 			$this->db->name('cate')->update($data);
-			return $this->alert('修改分类成功', '', url('cate/index', ['target' => 'issue']));
+			return $this->alert('修改分类成功', '', url('cate/index', ['target' => $data['target']]));
 		}
 	}
 
@@ -84,11 +82,12 @@ class Cate extends Common {
 			error('缺少分类信息');
 		}
 		// 获取子分类
+		$cateModel = Model('Cate');
 		$cate = $cateModel->get_cate_tree($cate_id);
 		$cates = array_column($cate, 'cate_id');
 		$cates[] = $cate_id;
 		$this->db->name('cate')->delete($cates);
-		return $this->alert("删除分类成功", "", url('cate/index', ['target' => 'issue']));
+		return $this->alert("删除分类成功", "", url('cate/index', ['target' => input('target')]));
 	}
 
 }

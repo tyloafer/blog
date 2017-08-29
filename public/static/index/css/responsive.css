@@ -1,0 +1,437 @@
+/* Extra small devices (phones, less than 768px) */
+@media (max-width : 766px) {
+
+
+	/* start index-2*/
+	.home-project-3col .project-item {
+	    width: 100%;
+	    border: 10px solid #fff;
+	}
+	#portfolio-section .filter a {
+		letter-spacing: 0;
+		padding: 6px 5px;
+	}	
+	.hb-info {
+    	margin-bottom: 30px;
+		padding: 0 15px;
+	}
+	.staff-img img{
+	width:100%;
+	} 
+	.staff-img {
+    margin: 0 15px;
+	}
+	.team-inner::after {
+    height: 114px;
+    bottom: -60px;
+    transform: rotate(-9deg);
+	}
+	#team2 span, #home-team span {
+    padding-bottom: 25px;
+	}
+	.f-subscribe form button {
+    font-size: 12px;
+	}
+	.section-about h3,.section-about p {
+    padding: 0 15px;
+	}
+	
+	/* start index-3*/
+	
+	.filter-gallery .project-item {
+		width: 100%;
+		padding:10px 15px;	
+	}
+	.features-right li,.features-left li {
+		padding:0 10px;
+	}
+	
+	/* start index-4*/
+
+	.mlr-10{
+		margin:0 10px;
+	}
+	#about-section2 .content-tab {
+		margin: 10px;
+	}
+	
+	/* portfolio-boxed-4 */
+	#portfolio-home .folio-boxed-4col .project-item {
+		width: 100%;
+	}
+	/* portfolio-wide-4col */	
+	.container-full .folio-boxed-4col .project-item {
+		width: 100% !important;
+	}
+	/* portfolio-single-slider + portfolio-single-video */	
+	.inner-content .fs-info h3 {
+		margin-top: 20px;
+	}
+	/* shop-cart */	
+	.cart-btn,.coupon {
+		 float:none;
+		display: inline-block;
+		margin: 0 auto;
+		margin-bottom:15px;
+	}
+	/* shop-full-width */	
+	.sort1 {
+		width:auto;
+		float:none;
+	}
+	.sort2 {
+		width:auto;
+		float:left;
+	}
+
+	.layout-modes{
+		float:left;
+	}
+	 /* shop-single-left*/
+	
+	.nav-tabs li {
+		min-height: auto;
+	}
+	/* blog-mason-4col*/
+	.blog-mason-4col .bm-item {
+		width: 100%;
+	}
+	/* blog-mason-3col*/
+	#blog-mason .bm-item {
+		width: 100%;
+	}
+	/* elements-list.html */
+	.list-wrap .col-sm-3 {
+		width: 100%;
+		text-align: center;
+	}
+	
+	/* gallery-4col.html */
+	.gal-4col li {
+    width: 100%;
+	}
+	/* gallery-5col.html */
+	.gal-5col li {
+    width: 100%;
+	}
+	.button.color5 {
+    margin-bottom: 20px;
+	}
+	/* onepage_church.html */
+	.ct-info .btn-small{
+		margin-bottom:20px;
+	}
+	.section-about .button.btn-border.color2 {
+		margin-left:16px;
+	}
+	/* onepage_construction.html */
+	.inner-content .ct-info img{
+		width:100%;
+	}
+	.cta-default .button {
+		margin: 0 auto;
+		margin-top: 20px;
+		float: none!important;
+	}
+	.cta-default-bdr p{
+		text-align: center;
+	}
+
+	/* onepage_hosting.html */
+	.tld_list li{
+		margin:5px;
+	}
+	/* onepage_medical.html */
+	.plr-30{
+		padding:0 30px;
+	}
+	
+	.section-about img {
+		width:100%;
+	}
+	/* shop-right-sidebar.html */
+	.sorter {
+		width: 93%;
+		left: 15px;
+	}
+	/* onepage_hosting.html */
+	.domain-sform1{
+		width:80%;
+		float:left;
+	}
+	.domain-sform3{
+		width:100%;
+		float:none;
+	}
+	#domain-sform select {
+		width:20%; 
+	}
+	.footer-bottom {
+		top: 0;
+	}
+	#team2 .text-center .team-social {
+		margin-bottom: 15px;
+	}
+	.service-content p {
+		padding: 0 10px;
+	}
+	#one-res .highlight3 {
+		font-size: 60px;
+		margin-bottom: 15px;
+	}
+
+	.features-left i {
+		float: left;
+	}
+	.features-left h3, .features-left p {
+		margin-left: 85px;
+		text-align: left;
+		margin-right:0;
+	}
+	.mm-content h1 {
+		font-size: 35px;
+	}
+	
+	.inner-content {
+		padding: 25px 0;
+	}
+	.inner-content h4{
+		margin-top: 25px;
+	}
+
+	.inner-content .button.btn-border.color3{
+	    margin-top: 20px;
+	}
+	.inner-content .btn-reveal{
+	    margin-bottom: 10px;
+	}
+	.inner-content .btn-desc span{
+	    margin-top: 20px;
+	}
+	.padding80 {
+		padding: 40px 0 !important;
+	}
+	.elements-media .block-heading{
+		margin-top:30px;
+	}
+	h2.uppercase.head-w-ul {
+		margin-bottom: 35px;
+	}
+	.parallax-bg1 .dual-btns a{
+		margin-bottom:10px;
+	}
+	#stats1 {
+		padding: 60px 0;
+	}
+	.gal-nav li {
+		z-index: 5000;
+		position: relative;
+	}
+	.gal-nav li {
+		margin-bottom: 20px;
+	}
+	.shop-content {
+		padding: 50px 0;
+	}
+	.shop-sidebar .widget {
+    margin-bottom:0;
+	}
+	footer {
+		padding: 80px 0 70px;
+	}
+	.space60 {
+		margin-bottom: 30px;
+	}
+	.space100 {
+		margin-bottom:50px;
+	}
+
+	.cart-info {
+    	top: 28px;
+	}
+
+	.sticky-nav .cart-info {
+    	top: 28px;
+	}
+
+	
+}
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 479px) {
+ 
+ /* start index2*/
+ 
+	#portfolio-section .filter li {
+		margin: 7px 5px;
+	}
+	.team-inner::after {
+		bottom: -75px;
+		transform: rotate(-12deg);
+	}
+	/* elements-list.html */
+	.list-style1 li i {
+		left: 34%;
+	}
+	/* gallery-2col.html */
+    .gal-2col li {
+    width: 100%;
+	}
+	/* gallery-3col.html */
+	.gal-3col li {
+    width: 100%;
+	}
+	
+	.page_nav {
+		margin-bottom: 25px;
+	}
+	
+	/* shop-cart.html */
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		padding: 0;
+	}
+	.table {
+		font-size: 12px;
+	}
+	.cart-table-img {
+		height:50px;
+		width:50px;
+	}
+	.comment-sub {
+		padding-left: 0px !important;
+	}
+	.shop_pn li a {
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+	}
+	
+	.book-doctor {
+		text-align:center;
+		padding:30px;
+	}
+	
+	.dual-btns .btn-lg {
+		padding: 18px 14px !important;
+    
+	}
+	.cart-btn button {
+    margin-left: 1px;
+	}
+	.white {
+		text-align:center;
+	}
+
+	
+}
+
+/* Landscape Mobile */
+@media only screen and (min-width : 480px) and (max-width : 767px) {
+	/* elements-list.html */
+	.list-style1 li i {
+		left: 37%;
+	}
+  
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width : 768px) and (max-width : 991px) {
+	 /* start index2*/
+   .f-subscribe form button {
+    font-size: 12px;
+	width: 35%;
+	}
+	.f-subscribe form input {
+    width: 65%;
+	}
+	/*shop-right-sidebar*/
+	.sorter {
+		width:92%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		left:0;
+		
+	}
+	/* onepage_charity.html */
+	.stats2-info p {
+		font-size: 53px;
+	}
+	
+	.elements-form-html .form-inline .form-group {
+		display: block;
+		margin-bottom: 15px;
+	
+	}
+	.popular-desc h5 {
+		margin: 0 0 2px;
+	}
+
+}
+/* Small devices (tablets, 768px and up) */
+@media only screen and (max-width : 991px) {
+
+	.section-team-block .left img,.section-team-block .right img {
+		float: none;
+		margin-right: 0;
+		width: 100%;
+		margin-left:0;
+	}
+	.section-team-block .left,.section-team-block .right {
+		text-align: center;
+		padding: 5px;
+	}
+	
+	.section-team-block .sep-right,.section-team-block .sep-left {
+		float: none;
+		margin: 0 auto;
+	}
+	.section-team-block a.button.btn-small {
+    margin: 0 auto;
+	margin-bottom:25px;
+	}
+	.dual-btns.auto-width  {
+		margin-bottom: 17px;
+	}
+	
+	
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width : 992px) and (max-width : 1199px) {
+/*shop-right-sidebar*/
+	.sorter {
+		left:3%;
+		width: 94%;
+	}
+	.countdown.styled div {
+	font-size: 60px;
+	}
+
+
+}
+
+
+
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width : 1200px) {
+
+
+}
+
+
+@media (min-width : 640px) and (max-width : 768px){
+	.sorter {
+    width: 95%;
+	}
+}
+@media (max-width : 1289px){
+	.boxed .navbar-fixed-top {
+    top: 20px;
+    width: 98%;
+    margin: 0 auto;
+	}
+}

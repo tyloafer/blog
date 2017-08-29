@@ -57,7 +57,7 @@ class Login extends Common {
 	}
 
 	public function logout(){
-		session(null, 'admmin');
+		session(null, 'admin');
 		return $this->alert('退出成功', '', url('login/index'));
 	}
 

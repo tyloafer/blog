@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body data-type="widgets">
+    <script src="__JS__/theme.js"></script>
+    <div class="am-g tpl-g">
+		{include file="Public:header"}
+		{include file="Public:left"}
+        <!-- 内容区域 -->
+        <div class="tpl-content-wrapper">
+            <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title  am-cf">SS列表</div>
+
+
+                            </div>
+                            <div class="widget-body  am-fr">
+
+                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                    <div class="am-form-group">
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button type="button" class="am-btn am-btn-default am-btn-success" style="font-size: 1.2rem" onclick="refresh()">刷新</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="{:url('shadowsock/del')}" method="post">
+
+                                <div class="am-u-sm-12">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" name="chooseall" id="chooseall">全选</th>
+                                                <th>ip</th>
+                                                <th>port</th>
+                                                <th>pass</th>
+                                                <th>method</th>
+                                                <th>region</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        	{foreach $ssacounts as $ssacount}
+                                            <tr class="gradeX">
+                                                <td><input type="checkbox" name="id[]" class="id" value="{$ssacount.id}" />    {$ssacount.id}</td>
+                                                <td>{$ssacount.ip}</td>
+                                                <td>{$ssacount.port}</td>
+                                                <td>{$ssacount.password}</td>
+                                                <td>{$ssacount.method}</td>
+                                                <td>{$ssacount.region}</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="{:url('shadowsock/del',['id' => $ssacount.id])}" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {/foreach}
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="am-u-lg-12">
+
+                                    <div class="am-u-lg-6" style="vertical-align: middle;">
+                                        <div class="am-pagination am-btn-group-xs">
+                                            <button type="submit" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-archive"></span> 删除</button>
+                                            <!-- <input type="submit" class="am-btn am-btn-default am-btn-danger" value="删除" /> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {include file="Public:script"}
+    <!-- 模态框alert -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+      <div class="am-modal-dialog">
+        <div class="am-modal-hd">刷新成功</div>
+        <div class="am-modal-bd">
+          222
+        </div>
+        <div class="am-modal-footer">
+          <span class="am-modal-btn">确定</span>
+        </div>
+      </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $("#chooseall").change(function() {
+        var stat = this.checked;
+        $("input[name='id[]']").prop('checked', stat);
+    });
+</script>
+<script>
+    function refresh(){
+        $.ajax({
+            url: '{:url("index/shadowsock/get")}',
+            success: function(){
+                $('#my-alert').modal();
+                $(".am-modal-btn").bind('click',function(){
+                    setTimeout("location.reload()", 1000); 
+                });
+            }
+        })
+        .done(function() {
+            console.log("success");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+        
+    }
+</script>
+</html>

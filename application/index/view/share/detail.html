@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body>
+	<div id="main-wrapper">
+        <!-- offcanvas-menu start -->
+        {include file="Public:menu"}
+        <!-- offcanvas-menu end -->
+        <div class="offcanvas-pusher">
+          <div class="content-wrapper">
+			<div class="outer-wrapper">
+
+	<!-- HEADER -->
+	{include file="Public:header"}
+
+	<!-- PAGE HEADER -->
+	<div class="page_header">
+		<div class="page_header_parallax">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>share</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bcrumb-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="bcrumbs">
+							<li><a href="{:url('index/index')}"><i class="fa fa-home"></i> 首页</a></li>
+							<li><a href="{:url('share/index')}"> 分享</a></li>
+							<li> {$share.title}</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- INNER CONTENT -->
+	<div class="inner-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div id="blog-slider" class="owl-carousel owl-theme">
+						{foreach $share.showImg as $img}
+						<div class="item">
+							<img src="{$img}" class="img-responsive" alt="">
+						</div>
+						{/foreach}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="fs-info">
+						{$share.content}
+					</div>
+				</div>
+			</div>
+			<div class="clearfix space30"></div>
+			<h4 class="uppercase">最新分享</h4>
+			<hr>
+			<div id="portfolio-home" class="isotope gutter folio-boxed-4col">
+				{foreach $recent_shares as $share}
+					<div class="project-item photography branding">
+							<div class="project-gal">
+								{if $share.img}
+								<img src="{:config('imgUrl')}{$share.img}" class="img-responsive" alt="">
+								{else}
+								<img src="__IMG__/projects/1.jpg" class="img-responsive" alt="">
+								{/if}
+							</div>
+							<a href="{:url('portfolio/detail', ['id' => $share.id])}">
+							<div class="overlay-folio2">
+								<div class="project-info">
+									<h2>{$share.title}</h2>
+									<p onclick="window.open('{$share.link}'); return false;" style="cursor: pointer;">直接访问{if $share.pass}，密码：{$share.pass}{/if}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				{/foreach}
+			</div>
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+	{include file="Public:footer"}
+</div>
+          </div> <!-- /.content-wrapper -->
+        </div> <!-- .offcanvas-pusher -->
+    </div><!-- /#main-wrapper -->
+    {include file="Public:js"}
+
+</body>
+</html>
+
+
+
+
+

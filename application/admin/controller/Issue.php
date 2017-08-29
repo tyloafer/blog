@@ -40,7 +40,6 @@ class Issue extends Common {
 	}
 
 	function add($id = 0){
-		// error_reporting(E_ALL & ~E_NOTICE);
 		// 获取分类
 		$cateModel = Model('Cate');
 		$cateInfo = $this->db->name('cate')->where(['target' => 'issue'])->select();
@@ -73,6 +72,7 @@ class Issue extends Common {
 		$cosapi->setTimeout(180);
 		$bucket = 'blog';
 		$data = $_POST;
+		$data['is_top'] == 'on' ? $data['is_top'] = 1 : $data['is_top'] = 0;
 		$data['is_top_time'] = strtotime($_POST['is_top_time']);
 		$data['add_time'] = time();
 		// 获取标签
@@ -118,6 +118,7 @@ class Issue extends Common {
 						$cosapi->delFile($bucket, $issue['img_origin']);
 					}
 				}
+				unset($data['add_time']);
 				if(!$this->db->name('issue')->where(['id' => $id])->update($data)){
 					throw new \Exception('更新文章失败');
 				}

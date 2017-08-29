@@ -44,6 +44,7 @@
                                 <div class="am-modal-bd">
                                     <form class="am-form" action="{:url('cate/update')}" method="post" id="cate_form">
                                         <input type="hidden" name="cate_id" id="cate_id" />
+                                        <input type="hidden" name="target" id="target" value="{:input('target')}" />
                                         <div class="am-form-group" >
                                             <div class="am-avg-sm-6 am-fl am-sm-text-right" style="padding-left: 100px;">分类名称</div>
                                             <div class="am-selected am-dropdown"><input type="text" id="cate_name" name="cate_name" class="am-avg-sm-8 am-fr " style="height: 32px;" id="doc-ipt-pwd-1"  placeholder=""></div>
@@ -118,7 +119,7 @@
                                                     <a class="doc-prompt-toggle" href="javascript:void(0)" cate_id={$cate.cate_id}>
                                                         <i class="am-icon-pencil"></i> 编辑
                                                     </a>
-                                                    <a href="javascript:void(0)" uri="{:url('cate/del',['cate_id' => $cate['cate_id']])}" class="tpl-table-black-operation-del">
+                                                    <a href="javascript:void(0)" uri="{:url('cate/del',['cate_id' => $cate['cate_id'], 'target' => input('target')])}" class="tpl-table-black-operation-del">
                                                         <i class="am-icon-trash"></i> 删除
                                                     </a>
                                                 </div>
@@ -159,7 +160,13 @@
         for(i = index+1; i < length; i++){
             if($($(this).parents('tbody').find('tr')[i]).attr('deep') > deep){
                 // 改行是点击行的子集元素，隐藏
+                // 如果是子集的子集，则忽略
+                if(style == 'table-row'){
+                    $($($(this).parents('tbody').find('tr')[i]).find('span')[0]).removeClass('am-icon-plus-square-o');
+                    $($($(this).parents('tbody').find('tr')[i]).find('span')[0]).addClass('am-icon-minus-square-o');
+                }
                 $($(this).parents('tbody').find('tr')[i]).css('display', style);
+
             }else{
                 break;
             }

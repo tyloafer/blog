@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body  id="portfolio-title-three-m">
+	<div id="main-wrapper">
+        <!-- offcanvas-menu start -->
+        {include file="Public:menu"}
+        <!-- offcanvas-menu end -->
+        <div class="offcanvas-pusher">
+          <div class="content-wrapper">
+			<div class="outer-wrapper">
+
+	<!-- HEADER -->
+	{include file="Public:header"}
+
+	<!-- PAGE HEADER -->
+	<div class="page_header">
+		<div class="page_header_parallax">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3><span>Portfolio</span>Lorem ipsum dolor <br>amet iplus</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bcrumb-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="bcrumbs">
+							<li><a href="{:url('index/index')}"><i class="fa fa-home"></i> 首页</a></li>
+							<li>SS帐号</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- INNER CONTENT -->
+	<div class="inner-content">
+		<div class="container">
+			<section id="portfolio-section">
+				<ul class="filter no-margin-top" data-option-key="filter">
+					<li><a class="selected" href="#filter" data-option-value="*">All</a></li>
+					{foreach $cates as $key => $cate}
+					<li><a href="#" data-option-value=".{$key}">{$cate}</a></li>
+					{/foreach}
+				</ul>
+				<div id="portfolio-home" class="isotope gutter folio-boxed-3col">
+					{foreach $ssacounts as $ssacount}
+					<div class="project-item {$ssacount.region_class}">
+							<div class="project-gal">
+								<img src="__IMG__/projects/{$ssacount.img_id}.jpg" class="img-responsive" alt="">
+								<div class="overlay-folio2">
+									<div class="project-info">
+										<h2>Ip Address : {$ssacount.ip}</h2>
+										<h2>Port       : {$ssacount.port}</h2>
+										<h2>Pass       : {$ssacount.password}</h2>
+										<h2>Method     : {$ssacount.method}</h2>
+									</div>
+								</div>
+							</div>
+					</div>
+					{/foreach}
+				</div>
+			</section>
+		</div>
+	</div>
+	{include file="Public:footer"}
+</div>
+          </div> <!-- /.content-wrapper -->
+        </div> <!-- .offcanvas-pusher -->
+    </div><!-- /#main-wrapper -->
+
+    <!-- Preloader -->
+	{include file="Public:js"}
+
+</body>
+</html>
+
+
+
+
+

@@ -384,4 +384,8 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
         return call_user_func_array([$this->getCollection(), $name], $arguments);
     }
 
+    // 修改分页数据
+    public function setItems($items){
+        $this->items = Collection::make($items);
+    }
 }

@@ -67,7 +67,7 @@
                                         <tbody>
                                         	{foreach $issues as $issue}
                                             <tr class="gradeX">
-                                                <td><input type="checkbox" name="id[]" class="id" value="{$issue.id}" /></td>
+                                                <td><input type="checkbox" name="id[]" class="id" value="{$issue.id}" />    {$issue.id}</td>
                                                 <td>{$issue.title}</td>
                                                 <td>{$issue.author}</td>
                                                 <td>{:date('Y-m-d H:i:s', $issue.add_time)}</td>
@@ -99,7 +99,9 @@
                                         </div>
                                     </div>
                                     <div class="am-fr cm-u-rg-6">
-                                        {$issues->render()}
+                                        {if !empty($shares)}
+                                            {$shares->render()}
+                                        {/if}
                                     </div>
                                 </div>
                                 </form>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body data-type="widgets">
+    <script src="__JS__/theme.js"></script>
+    <div class="am-g tpl-g">
+		{include file="Public:header"}
+		{include file="Public:left"}
+        <!-- 内容区域 -->
+        <div class="tpl-content-wrapper">
+            <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title  am-cf">分享列表</div>
+
+
+                            </div>
+                            <div class="widget-body  am-fr">
+
+                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                    <div class="am-form-group">
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a href="{:url('share/add')}"><button type="button" class="am-btn am-btn-default am-btn-success" style="font-size: 1.2rem"><span class="am-icon-plus"></span> 新增</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="" method="get">
+                                <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                    <div class="am-form-group tpl-table-list-select">
+                                        <select data-am-selected="{btnSize: 'sm'}" name="cate_id">
+											<option value="0" {if $cate_id == 0}selected{/if}>请选择分类</option>
+                                            {foreach $cates as $cate}
+                                            <option value="{$cate.cate_id}"  {if $cate_id == $cate.cate_id}selected{/if}>{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$cate['deep'])}{$cate.cate_name}</option>
+                                            {/foreach}
+										</select>
+                                    </div>
+                                </div>
+                                <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+                                    <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                                        <input type="text" name="title" value="{$title}" class="am-form-field ">
+                                        <span class="am-input-group-btn" style="position: relative;">
+											<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="submit"></button>
+										</span>
+                                    </div>
+                                </div>
+                                </form>
+                                <form action="{:url('share/del')}" method="post">
+
+                                <div class="am-u-sm-12">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" name="chooseall" id="chooseall">全选</th>
+                                                <th>分享标题</th>
+                                                <th>添加时间</th>
+                                                <th>分享分类</th>
+                                                <th>seo关键字</th>
+                                                <th>seo描述</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        	{foreach $shares as $share}
+                                            <tr class="gradeX">
+                                                <td><input type="checkbox" name="id[]" class="id" value="{$share.id}" />    {$share.id}</td>
+                                                <td>{$share.title}</td>
+                                                <td>{:date('Y-m-d H:i:s', $share.add_time)}</td>
+                                                <td>{$share.cate_name}</td>
+                                                <td>{$share.keywords}</td>
+                                                <td>{$share.description}</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="{:url('share/add',['id' => $share.id])}">
+                                                            <i class="am-icon-pencil"></i> 编辑
+                                                        </a>
+                                                        <a href="{:url('share/del',['id' => $share.id])}" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {/foreach}
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="am-u-lg-12">
+
+                                    <div class="am-u-lg-6" style="vertical-align: middle;">
+                                        <div class="am-pagination am-btn-group-xs">
+                                            <button type="submit" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-archive"></span> 删除</button>
+                                            <!-- <input type="submit" class="am-btn am-btn-default am-btn-danger" value="删除" /> -->
+                                        </div>
+                                    </div>
+                                    <div class="am-fr cm-u-rg-6">
+                                        {if !empty($shares)}
+                                            {$shares->render()}
+                                        {/if}
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {include file="Public:script"}
+
+</body>
+<script type="text/javascript">
+    $("#chooseall").change(function() {
+        var stat = this.checked;
+        $("input[name='id[]']").prop('checked', stat);
+    });
+</script>
+</html>

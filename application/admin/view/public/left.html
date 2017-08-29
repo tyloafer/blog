@@ -70,34 +70,27 @@
             </a>
             <ul class="sidebar-nav sidebar-nav-sub" {if $here.controller == 'Share' || $here.controller == 'Cate' && input('target') == 'share'} style="display: block;" {/if}>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('share/index')}" {if $here == 'Cate'}class="active"{/if}>
-                        <span class="am-icon-tags sidebar-nav-link-logo"></span> 分享管理
+                    <a href="{:url('share/index')}" {if $here.controller == 'Share'}class="active"{/if}>
+                        <span class="am-icon-link sidebar-nav-link-logo"></span> 分享管理
                     </a>
                 </li>
 
                 <li class="sidebar-nav-link">
-                    <a href="{:url('cate/index')}" {if $here == 'Cate'}class="active"{/if}>
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 分类管理
+                    <a href="{:url('cate/index', ['target' => 'share'])}" {if $here.controller == 'Cate' && input('target') == 'share'}class="active"{/if}>
+                        <span class="am-icon-tags sidebar-nav-link-logo"></span> 分类管理
                     </a>
                 </li>
             </ul>
         </li>
         <li class="sidebar-nav-link">
-            <a href="sign-up.html">
-                <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-                <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
+            <a href="{:url('works/index')}" {if $here.controller == 'Works'}class="active"{/if}>
+                <i class="am-icon-star sidebar-nav-link-logo"></i> 作品管理
             </a>
         </li>
         <li class="sidebar-nav-link">
-            <a href="login.html">
-                <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
+            <a href="{:url('shadowsock/index')}" {if $here.controller == 'Shadowsock'}class="active"{/if}>
+                <i class="am-icon-plane sidebar-nav-link-logo"></i> SS管理
             </a>
         </li>
-        <li class="sidebar-nav-link">
-            <a href="404.html">
-                <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-            </a>
-        </li>
-
     </ul>
 </div>

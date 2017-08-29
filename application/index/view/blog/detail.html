@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body id="blog-single-m">
+	<div id="main-wrapper">
+        {include file="Public:menu"}
+        <div class="offcanvas-pusher">
+          <div class="content-wrapper">
+			<div class="outer-wrapper">
+
+	 <!-- HEADER -->
+	{include file="Public:header"}
+
+	<!-- PAGE HEADER -->
+	<div class="page_header">
+		<div class="page_header_parallax">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Blog</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bcrumb-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="bcrumbs">
+							<li><a href="{:url('index/index')}"><i class="fa fa-home"></i> 首页</a></li>
+							<li><a href="{:url('blog/index')}"> 博客</a></li>
+							<li>{$blog.title}</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- INNER CONTENT -->
+	<div class="inner-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="blog-single">
+						<article class="blogpost">
+							<h2 class="post-title" align="center">{$blog.title}</h2>
+							<div class="post-meta" style="text-align: center;">
+								<span><a href="#"><i class="icon-clock2"></i> {$blog.add_time}</a></span>
+								<span><a href="#"><i class="icon-user"></i> {$blog.author}</a></span>
+								<span><i class="icon-archive3"></i> {$blog.tag}</span>
+<!-- 								<span><a href="#"><i class="icon-speech-bubble"></i> 13 Comments</a></span>
+ -->							</div>
+							<div class="space20"></div>
+							<!-- Media Gallery -->
+							<div class="post-media">
+<!-- 								<div id="blog-slider" class="owl-carousel owl-theme">
+ -->									<div class="item">
+										<img src="{$blog.img_origin}" class="img-responsive" alt="">
+									</div>
+<!-- 								</div>
+ -->							</div>
+							<div class="space30"></div>
+							{$blog.content}
+						</article>
+					</div>
+<!-- 					<div class="padding70">
+						<h4 class="uppercase space30">Comments&nbsp;&nbsp;<span>(3)</span></h4>
+						<ul class="comment-list">
+							<li>
+								<a class="pull-left" href="#"><img class="comment-avatar" src="__IMG__/quote/1.jpg" alt="" height="50" width="50"></a>
+								<div class="comment-meta">
+									<a href="#">John Doe</a>
+									<span>
+									<em>Feb 17, 2015, at 11:34</em>
+									<a href="#" class="button btn-xs reply"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+									</span>
+								</div>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sit amet urna nec tempor. Nullam pellentesque in orci in luctus. Sed convallis tempor tellus a faucibus. Suspendisse et quam eu velit commodo tempus.
+								</p>
+							</li>
+							<li class="comment-sub">
+								<a class="pull-left" href="#"><img class="comment-avatar" src="__IMG__/quote/2.jpg" alt="" height="50" width="50"></a>
+								<div class="comment-meta">
+									<a href="#">John Doe</a>
+									<span>
+									<em>March 08, 2015, at 03:34</em>
+									<a href="#" class="button btn-xs reply"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+									</span>
+								</div>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sit amet urna nec tempor. Nullam pellentesque in orci in luctus. Sed convallis tempor tellus a faucibus. Suspendisse et quam eu velit commodo tempus.
+								</p>
+							</li>
+							<li>
+								<a class="pull-left" href="#"><img class="comment-avatar" src="__IMG__/quote/1.jpg" alt="" height="50" width="50"></a>
+								<div class="comment-meta">
+									<a href="#">John Doe</a>
+									<span>
+									<em>June 11, 2015, at 07:34</em>
+									<a href="#" class="button btn-xs reply"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+									</span>
+								</div>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sit amet urna nec tempor. Nullam pellentesque in orci in luctus. Sed convallis tempor tellus a faucibus. Suspendisse et quam eu velit commodo tempus.
+								</p>
+							</li>
+						</ul>
+					</div>
+					<h4 class="uppercase space30">Leave a comment</h4>
+					<form method="post" action="#" id="form" role="form" class="form">
+						<div class="row">
+							<div class="col-md-6 space20">
+								<input name="name" id="name" class="input-md form-control" placeholder="Name *" maxlength="100" required="" type="text">
+							</div>
+							<div class="col-md-6 space20">
+								<input name="email" id="email" class="input-md form-control" placeholder="Email *" maxlength="100" required="" type="email">
+							</div>
+						</div>
+						<div class="space20">
+							<input name="website" id="website" class="input-md form-control" placeholder="Website" maxlength="100" required="" type="text">
+						</div>
+						<div class="space20">
+							<textarea name="text" id="text" class="input-md form-control" rows="6" placeholder="Comment" maxlength="400"></textarea>
+						</div>
+						<button type="submit" class="button btn-small">
+						Submit Comment
+						</button>
+					</form> -->
+					<div class="space60"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{include file="Public:footer"}
+
+          </div> <!-- /.content-wrapper -->
+        </div> <!-- .offcanvas-pusher -->
+    </div><!-- /#main-wrapper -->
+
+	{include file="Public:js"}
+
+</body>
+</html>

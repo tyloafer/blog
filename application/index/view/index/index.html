@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="Public:head"}
+<body>
+      <div id="main-wrapper">
+        <!-- offcanvas-menu start -->
+		{include file="Public:menu"}
+        <!-- offcanvas-menu end -->
+
+        <div class="offcanvas-pusher">
+          <div class="content-wrapper">
+
+			<div class="outer-wrapper">
+
+				 <!-- HEADER -->
+				{include file="Public:header"}
+
+			 	<!-- SLIDER -->
+				<div class="slider-wrap">
+					<div class="tp-banner-container">
+						<div class="tp-banner" >
+							<ul>
+								<li data-transition="fade" data-slotamount="7" data-masterspeed="2000" data-saveperformance="on"  data-title="Ken Burns Slide">
+									<!-- MAIN IMAGE -->
+									<img src="__IMG__/dummy.png"  alt="2" data-lazyload="__IMG__/slider/1/1.jpg" data-bgposition="right top" data-kenburns="off" data-duration="12000" data-ease="Power0.easeInOut"   data-bgfit="cover" data-bgpositionend="center bottom">
+									<div class="tp-caption tentered_white_huge lft tp-resizeme" data-endspeed="300" data-easing="Power4.easeOut" data-start="400" data-speed="600" data-y="280" data-hoffset="0" data-x="center"
+										style="    color: #fff;
+										text-transform: uppercase;
+										font-size: 40px;
+										letter-spacing: 6px;
+										font-family: Open Sans;
+										font-weight: 400;
+										"
+										>
+										We Are Maxima
+									</div>
+									<div class="tp-caption tentered_white_huge lfb tp-resizeme" data-endspeed="300" data-easing="Power4.easeOut" data-start="800" data-speed="600" data-y="350" data-hoffset="0" data-x="center"
+										style="    color: #fff;
+										font-size: 13px;
+										text-transform: uppercase;
+										letter-spacing: 10px;
+										"
+										>
+										One World for All
+									</div>
+									<a href="#" class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
+										data-x="center"
+										data-y="400"
+										data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+										data-speed="500"
+										data-start="1200"
+										data-easing="Power3.easeInOut"
+										data-splitin="none"
+										data-splitout="none"
+										data-elementdelay="0.1"
+										data-endelementdelay="0.1"
+										data-linktoslide="next"
+										style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+										color: #fff;
+										text-transform: uppercase;
+										border: none;
+										background:#000;
+										font-size: 12px;
+										letter-spacing: 3px;
+										font-family: Montserrat;
+										border-radius: 0px;
+										display: table;
+										transition: .4s;
+										;">buy this theme</a>
+								</li>
+								
+								<!-- SLIDE  -->
+								<li data-transition="fade" data-slotamount="7" data-masterspeed="2000" data-saveperformance="on"  data-title="Ken Burns Slide">
+									<!-- MAIN IMAGE -->
+									<img src="__IMG__/dummy.png"  alt="2" data-lazyload="__IMG__/slider/1/2.jpg" data-bgposition="right top" data-kenburns="off" data-duration="12000" data-ease="Power0.easeInOut"   data-bgfit="cover" data-bgpositionend="center bottom">
+									<div class="tp-caption tentered_white_huge lft tp-resizeme" data-endspeed="300" data-easing="Power4.easeOut" data-start="400" data-speed="600" data-y="280" data-hoffset="0" data-x="center"
+										style="    color: #fff;
+										text-transform: uppercase;
+										font-size: 40px;
+										letter-spacing: 6px;
+										font-family: Montserrat;
+										font-weight: 400;
+										"
+										>
+										Most Popular HTML5 Template
+									</div>
+									<div class="tp-caption tentered_white_huge lfb tp-resizeme" data-endspeed="300" data-easing="Power4.easeOut" data-start="800" data-speed="600" data-y="350" data-hoffset="0" data-x="center"
+										style="    color: #fff;
+										font-size: 13px;
+										text-transform: uppercase;
+										letter-spacing: 10px;
+										"
+										>
+										ready to use for everyone
+									</div>
+									<a href="#" class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
+										data-x="center"
+										data-y="400"
+										data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+										data-speed="500"
+										data-start="1200"
+										data-easing="Power3.easeInOut"
+										data-splitin="none"
+										data-splitout="none"
+										data-elementdelay="0.1"
+										data-endelementdelay="0.1"
+										data-linktoslide="next"
+										style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+										color: #fff;
+										text-transform: uppercase;
+										border: none;
+										background:#000;
+										font-size: 12px;
+										letter-spacing: 3px;
+										font-family: Montserrat;
+										border-radius: 0px;
+										display: table;
+										transition: .4s;
+										;">buy this theme</a>
+								</li>
+								</ul>
+							<div class="tp-bannertimer"></div>
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="inner-content no-padding">
+					<div class="container home-blog padding80">
+						<div class="text-center space40">
+							<h2 class="uppercase">最新博客</h2>
+						</div>
+						<div class="row">
+							{foreach $blogs as $blog}
+							<div class="col-md-4">
+								<div class="hb-info">
+									<div class="hb-thumb">
+										{if $blog.img_origin}
+										<img src="{$blog.img_origin}" class="img-responsive" alt=""/>
+										{else}
+										<img src="__IMG__/blog/3.jpg" class="img-responsive" alt=""/>
+										{/if}
+										<div class="date-meta">
+											{$blog.add_time}
+										</div>
+									</div>
+									<h4><a href="{:url('blog/detail', ['id' => $blog.id])}">{$blog.title}</a></h4>
+									<p>{$blog.abstract}</p>
+									<a href="{:url('blog/detail', ['id' => $blog.id])}" class="readmore">Read more...</a>
+								</div>
+							</div>
+							{/foreach}
+						</div>
+					</div>
+					<section id="portfolio-section" class="border-top padding80">
+						<div class="container">
+							<h2 class="uppercase text-center">最新作品</h2>
+							<div id="portfolio-home" class="isotope home-project-3col">
+								{foreach $works as $work}
+								<div class="project-item">
+									<div class="project-gal">
+										{if $work.img}
+										<img src="{:config('imgUrl')}{$work.img}" class="img-responsive" alt="">
+										{else}
+										<img src="__IMG__/projects/4.jpg" class="img-responsive" alt="">
+										{/if}
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a href="{:url('portfolio/detail', ['id' => $work.id])}"><i class="fa fa-search"></i></a>
+													<a class="link" href="{$work.link}"><i class="icon-link3"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>{$work.title}</h2>
+									</div>
+								</div>
+								{/foreach}
+							</div>
+						</div>
+					</section>
+					<div class="space80"></div>
+					<section id="portfolio-section" class="border-top padding80">
+						<div class="container">
+							<h2 class="uppercase text-center">最新分享</h2>
+							<div id="portfolio-home" class="isotope home-project-3col">
+								{foreach $shares as $share}
+								<div class="project-item">
+									<div class="project-gal">
+										{if $work.img}
+										<img src="{:config('imgUrl')}{$work.img}" class="img-responsive" alt="">
+										{else}
+										<img src="__IMG__/projects/4.jpg" class="img-responsive" alt="">
+										{/if}
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a href="{:url('share/detail', ['id' => $share.id])}"><i class="fa fa-search"></i></a>
+													<a class="link" href="{$share.link}"><i class="icon-link3"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>{$share.title}</h2>
+										{if $share.pass}
+										<p>密码：{$share.pass}</p>
+										{/if}
+									</div>
+								</div>
+								{/foreach}
+								<div class="project-item photography web-design">
+									<div class="project-gal">
+										<img src="__IMG__/projects/4.jpg" class="img-responsive" alt="">
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a class="mp-lightbox zoom" href="__IMG__/projects/4.jpg"><i class="fa fa-search"></i></a>
+													<a class="link" href="portfolio-single-slider.html"><i class="icon-link3"></i></a>					
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>Praesent placerat risus quis</h2>
+										<p>UI/UX, Web Design</p>
+									</div>
+								</div>
+								<div class="project-item branding">
+									<div class="project-gal">
+										<img src="__IMG__/projects/5.jpg" class="img-responsive" alt="">
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a class="mp-lightbox zoom" href="__IMG__/projects/5.jpg"><i class="fa fa-search"></i></a>
+													<a class="link" href="portfolio-single-slider.html"><i class="icon-link3"></i></a>					
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>Ut aliquam sollicitudin</h2>
+										<p>Web Development</p>
+									</div>
+								</div>
+								<div class="project-item illustration web-design print">
+									<div class="project-gal">
+										<img src="__IMG__/projects/6.jpg" class="img-responsive" alt="">
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a class="mp-lightbox zoom" href="__IMG__/projects/6.jpg"><i class="fa fa-search"></i></a>
+													<a class="link" href="portfolio-single-slider.html"><i class="icon-link3"></i></a>					
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>Cras ornare tristique</h2>
+										<p>Creative, Web</p>
+									</div>
+								</div>
+								<div class="project-item illustration web-design">
+									<div class="project-gal">
+										<img src="__IMG__/projects/8.jpg" class="img-responsive" alt="">
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a class="mp-lightbox zoom" href="__IMG__/projects/8.jpg"><i class="fa fa-search"></i></a>
+													<a class="link" href="portfolio-single-slider.html"><i class="icon-link3"></i></a>					
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>Aliquam tincidunt risus.</h2>
+										<p>Image Gallery</p>
+									</div>
+								</div>
+								<div class="project-item photography branding">
+									<div class="project-gal">
+										<img src="__IMG__/projects/10.jpg" class="img-responsive" alt="">
+										<div class="overlay-folio">
+											<div class="hover-box">
+												<div class="hover-zoom">
+													<a class="mp-lightbox zoom" href="__IMG__/projects/10.jpg"><i class="fa fa-search"></i></a>
+													<a class="link" href="portfolio-single-slider.html"><i class="icon-link3"></i></a>					
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="project-info">
+										<h2>Aliquam erat volutpat</h2>
+										<p>Image Gallery</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div id="stats3" class="parallax-bg3">
+						<div class="bg-overlay">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-3 col-sm-6">
+										<div class="stats3-info">
+											<i class="icon-location3"></i>
+											<p><span class="count count3">715</span></p>
+											<h2>Places Visited</h2>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<div class="stats3-info">
+											<i class="icon-box2"></i>
+											<p><span class="count count3">350</span></p>
+											<h2>Box shadows</h2>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<div class="stats3-info">
+											<i class="icon-photoshop"></i>
+											<p><span class="count count3">427</span></p>
+											<h2>Vectors created</h2>
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<div class="stats3-info">
+											<i class="icon-bookmark"></i>
+											<p><span class="count count3">2540</span></p>
+											<h2>Bookmarks</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="container padding70">
+						<div class="section-about">
+							<div class="row">
+								<div class="col-md-6">
+									<div>
+										<img src="__IMG__/other/6.png" class="img-responsive" alt="">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div>
+										<div class="space70"></div>
+										<h3>Who We Are &amp; What We Do</h3>
+										<p>Cum nascetur ridiculus mus. Prae sent non sem eu mi malesuada viverra volutpat ut libero. Nullam a venenatis tellus. Nam fen convallis tristique. In imperdiet est sed aliquet imperdiet. Nulla libero orci, cursus ut consecr ac, tempus a odio. Etiam quis massa ac ante adipiscing consectetur. Duis dui turpis, porttitor sit amet metus sed, interdum tempus ipsum. Integer aliquam sem elementum pellentesque. Donec mollis eros dolor, a ongue neque venenatis vulputate. Etiam a eros adipiscing, dapibus ante id, luctus massa. Maecenas non quam interdum, aliquam leo a, ornare mi. Integer. faucibus turpis sed leo gravida laoreet. Curabitur at ligula. </p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="border-top padding50">
+
+					<div class="container">
+							<div class="section-info">
+								<div class="col-md-6 margin-bottom-xs-30">
+									<h4>Why Choose Us</h4>
+									<div class="space30"></div>
+									<div class="panel-group" id="accordion">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1">
+													Lorem ipsum dolor sit amet consectetur adipiscing elit
+													</a>
+												</h4>
+											</div>
+											<div id="collapseOne1" class="panel-collapse collapse">
+												<div class="panel-body">
+													<p>Etiam cursus pellentesque neque, eget ullamcorper augue eleifend a. In sit amet pulvinar purus. Ut in nibh tortor. Nullam quis magna sed nunc facilisis blandit vel at erat. Donec blandit et nulla sed lacinia. Quisque ullamcorper tincidunt ante, ut feugiat felis consectetur ut.</p>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix space10"></div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo1">
+													Curabitur et diam vitae dolor aliquet et in massa
+													</a>
+												</h4>
+											</div>
+											<div id="collapseTwo1" class="panel-collapse collapse">
+												<div class="panel-body">
+													<p>Nam ullamcorper imperdiet luctus. Vestibulum tincidunt malesuada mi, in posuere augue cursus nec. Morbi et vehicula risus, fermentum lacinia justo. Etiam tellus arcu, eleifend tristique enim rutrum iaculis risus, id tincidunt dui fringilla sed bibendum lorem.</p>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix space10"></div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree1">
+													Proin faucibus sem sed dapibus dapibus
+													</a>
+												</h4>
+											</div>
+											<div id="collapseThree1" class="panel-collapse collapse">
+												<div class="panel-body">
+													<p>Etiam cursus pellentesque neque, eget ullamcorper augue eleifend a. In sit amet pulvinar purus. Ut in nibh tortor. Nullam quis magna sed nunc facilisis blandit vel at erat. Donec blandit et nulla sed lacinia. Quisque ullamcorper tincidunt ante, ut feugiat felis consectetur ut.</p>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix space10"></div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour1">
+													Lorem ipsum dolor sit amet consectetur adipiscing elit
+													</a>
+												</h4>
+											</div>
+											<div id="collapseFour1" class="panel-collapse collapse">
+												<div class="panel-body">
+													<p>Etiam cursus pellentesque neque, eget ullamcorper augue eleifend a. In sit amet pulvinar purus. Ut in nibh tortor. Nullam quis magna sed nunc facilisis blandit vel at erat. Donec blandit et nulla sed lacinia. Quisque ullamcorper tincidunt ante, ut feugiat felis consectetur ut.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h4>Skills we are having</h4>
+
+									<div class="space30"></div>
+
+
+									<div class="progress-wrapper">
+
+                    <div class="progress-item">
+                        <span class="progress-title">Web Design</span>
+
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-dealy" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" ><span class="progress-percent"> 97%</span>
+                          </div>
+                        </div><!-- /.progress -->
+                    </div><!-- /.skill-progress -->
+
+
+                    <div class="progress-item">
+                        <span class="progress-title">Graphic Design</span>
+
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-dealy" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" ><span class="progress-percent"> 78%</span>
+                          </div>
+                        </div><!-- /.progress -->
+                    </div><!-- /.skill-progress -->
+
+                    <div class="progress-item">
+                        <span class="progress-title">WordPress</span>
+
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-dealy" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" ><span class="progress-percent"> 65%</span>
+                          </div>
+                        </div><!-- /.progress -->
+                    </div><!-- /.skill-progress -->
+                    
+                	</div><!-- /.progress-wrapper -->
+
+
+									<div class="gap">
+									</div>
+
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			{include file="Public:footer"}
+			</div>
+
+          </div> <!-- /.content-wrapper -->
+        </div> <!-- .offcanvas-pusher -->
+      </div><!-- /#main-wrapper -->
+
+{include file="Public:js"}
+</body>
+</html>
+

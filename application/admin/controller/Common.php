@@ -12,9 +12,15 @@ class Common extends Controller{
 	public $db;
 	function __construct() {
 		parent::__construct();
+		error_reporting(E_ALL & ~E_NOTICE);
 		$this->db = db();
 		$this->admin_ip = getip();
 		$this->admin = session('admin', '', 'admin');
+		$this->here = [
+			'controller'	=>	request()->controller(),
+			'action'		=>	request()->action()
+		];
+		$this->assign('here', $this->here);
 		if(strtolower(request()->controller()) != 'login' && !$this->admin){
 			header("Location:".url('login/index'));
 		}elseif(strtolower(request()->controller()) != 'login' && $this->admin){                   // 存在session信息但是没有yonghuip和浏览器类型

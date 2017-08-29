@@ -14,9 +14,9 @@ class Cate extends Model {
 	 * @param  string  $type    [返回的类型  tree:array]
 	 * @return [type]           [description]
 	 */
-	function get_cate_tree($cate_id = 0, $array = array(), $type = 'array'){
-		if(empty($array)){
-			$array = $this->db->name('cate')->order('cate_sort')->select();
+	function get_cate_tree($cate_id = 0, $array = false, $type = 'array'){
+	if($array === false){
+			$array = db('cate')->order('cate_sort')->select();
 		}
 		$rows = array_change_key($array, 'cate_id');
 		$tree = [];
