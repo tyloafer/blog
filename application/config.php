@@ -273,7 +273,7 @@ return [
         'secretId'  =>  'AKIDQcYEepoiSwA8qJ4TBdplQqzsUqBHfoBJ',
         'secretKey' =>  '1nMglbCYmmX4LK3XljRt50f4EDwPcaIk',
     ],
-    'imgUrl'    =>  'http://blog-1253518569.cossh.myqcloud.com',
+    'imgUrl'    =>  'https://blog-1253518569.cossh.myqcloud.com',
 ];
 
 
