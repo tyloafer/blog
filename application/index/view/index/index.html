@@ -32,7 +32,7 @@
 										font-weight: 400;
 										"
 										>
-										We Are Maxima
+										我是 天涯浪子
 									</div>
 									<div class="tp-caption tentered_white_huge lfb tp-resizeme" data-endspeed="300" data-easing="Power4.easeOut" data-start="800" data-speed="600" data-y="350" data-hoffset="0" data-x="center"
 										style="    color: #fff;
@@ -41,32 +41,8 @@
 										letter-spacing: 10px;
 										"
 										>
-										One World for All
+										一只追求优雅简洁代码的程序猿
 									</div>
-									<a href="#" class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-										data-x="center"
-										data-y="400"
-										data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-										data-speed="500"
-										data-start="1200"
-										data-easing="Power3.easeInOut"
-										data-splitin="none"
-										data-splitout="none"
-										data-elementdelay="0.1"
-										data-endelementdelay="0.1"
-										data-linktoslide="next"
-										style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
-										color: #fff;
-										text-transform: uppercase;
-										border: none;
-										background:#000;
-										font-size: 12px;
-										letter-spacing: 3px;
-										font-family: Montserrat;
-										border-radius: 0px;
-										display: table;
-										transition: .4s;
-										;">buy this theme</a>
 								</li>
 								
 								<!-- SLIDE  -->
@@ -82,7 +58,7 @@
 										font-weight: 400;
 										"
 										>
-										Most Popular HTML5 Template
+										天涯浪子 的 博客
 									</div>
 									<div class="tp-caption tentered_white_huge lfb tp-resizeme" data-endspeed="300" data-easing="Power4.easeOut" data-start="800" data-speed="600" data-y="350" data-hoffset="0" data-x="center"
 										style="    color: #fff;
@@ -91,32 +67,8 @@
 										letter-spacing: 10px;
 										"
 										>
-										ready to use for everyone
+										只为 优雅的 存在
 									</div>
-									<a href="#" class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-										data-x="center"
-										data-y="400"
-										data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-										data-speed="500"
-										data-start="1200"
-										data-easing="Power3.easeInOut"
-										data-splitin="none"
-										data-splitout="none"
-										data-elementdelay="0.1"
-										data-endelementdelay="0.1"
-										data-linktoslide="next"
-										style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
-										color: #fff;
-										text-transform: uppercase;
-										border: none;
-										background:#000;
-										font-size: 12px;
-										letter-spacing: 3px;
-										font-family: Montserrat;
-										border-radius: 0px;
-										display: table;
-										transition: .4s;
-										;">buy this theme</a>
 								</li>
 								</ul>
 							<div class="tp-bannertimer"></div>
@@ -190,7 +142,7 @@
 								<div class="project-item">
 									<div class="project-gal">
 										{if $work.img}
-										<img src="{:config('imgUrl')}{$work.img}" class="img-responsive" alt="">
+										<img src="{:config('imgUrl')}{$share.img}" class="img-responsive" alt="">
 										{else}
 										<img src="__IMG__/projects/4.jpg" class="img-responsive" alt="">
 										{/if}
@@ -198,7 +150,7 @@
 											<div class="hover-box">
 												<div class="hover-zoom">
 													<a href="{:url('share/detail', ['id' => $share.id])}"><i class="fa fa-search"></i></a>
-													<a class="link" href="{$share.link}"><i class="icon-link3"></i></a>
+													<a class="link" href="{$share.link}" target="_blank"><i class="icon-link3"></i></a>
 												</div>
 											</div>
 										</div>
@@ -222,28 +174,28 @@
 										<div class="stats3-info">
 											<i class="icon-location3"></i>
 											<p><span class="count count3">715</span></p>
-											<h2>Places Visited</h2>
+											<h2>今日浏览量</h2>
 										</div>
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<div class="stats3-info">
-											<i class="icon-box2"></i>
-											<p><span class="count count3">350</span></p>
-											<h2>Box shadows</h2>
+											<i class="icon-pencil2"></i>
+											<p><span class="count count3">{$count.blogs}</span></p>
+											<h2>文章总数</h2>
 										</div>
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<div class="stats3-info">
-											<i class="icon-photoshop"></i>
-											<p><span class="count count3">427</span></p>
-											<h2>Vectors created</h2>
+											<i class="icon-star2"></i>
+											<p><span class="count count3">{$count.works}</span></p>
+											<h2>作品总数</h2>
 										</div>
 									</div>
 									<div class="col-md-3 col-sm-6">
 										<div class="stats3-info">
-											<i class="icon-bookmark"></i>
-											<p><span class="count count3">2540</span></p>
-											<h2>Bookmarks</h2>
+											<i class="icon-link2"></i>
+											<p><span class="count count3">{$count.share}</span></p>
+											<h2>分享总数</h2>
 										</div>
 									</div>
 								</div>
@@ -256,13 +208,13 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div>
-										<img src="__IMG__/other/6.png" class="img-responsive" alt="">
+										<img src="__IMG__/other/coder.jpg" class="img-responsive" alt="">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div>
 										<div class="space70"></div>
-										<h3>Who We Are &amp; What We Do</h3>
+										<h3>个人简介</h3>
 										<p>Cum nascetur ridiculus mus. Prae sent non sem eu mi malesuada viverra volutpat ut libero. Nullam a venenatis tellus. Nam fen convallis tristique. In imperdiet est sed aliquet imperdiet. Nulla libero orci, cursus ut consecr ac, tempus a odio. Etiam quis massa ac ante adipiscing consectetur. Duis dui turpis, porttitor sit amet metus sed, interdum tempus ipsum. Integer aliquam sem elementum pellentesque. Donec mollis eros dolor, a ongue neque venenatis vulputate. Etiam a eros adipiscing, dapibus ante id, luctus massa. Maecenas non quam interdum, aliquam leo a, ornare mi. Integer. faucibus turpis sed leo gravida laoreet. Curabitur at ligula. </p>
 									</div>
 								</div>

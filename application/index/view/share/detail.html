@@ -55,7 +55,16 @@
 				</div>
 				<div class="col-md-6">
 					<div class="fs-info">
+						<h3>分享简介：</h3>
 						{$share.content}
+						<br />
+						<h3>项目链接：</h3>
+						<ul class="project-meta">
+							<li><a href="{$share.link}" target="_blank"><i class="icon-link3"></i>{$share.link}</a></li>
+							{if $share.pass}
+							<li><i class="icon-link3"></i>密码：{$share.pass}</a></li>
+							{/if}
+						</ul>
 					</div>
 				</div>
 			</div>

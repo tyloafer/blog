@@ -86,7 +86,10 @@ class Works extends Common {
                 }
             }
             // 上传内容轮播图
-            for ($i = 0; isset($_FILES['file']['error'][$i]) && $_FILES['file']['error'][$i] == 0; $i++) {
+            for ($i = 0; isset($_FILES['file']['error'][$i]); $i++) {
+                if($_FILES['file']['error'][$i] != 0){
+                    continue;
+                }
                 // 获取images下是否有当天的文件夹
                 $td_fold = date("Ymd", time());
                 $ret = $cosapi->statFolder($bucket, '/images'.'/'.$td_fold);
@@ -131,6 +134,7 @@ class Works extends Common {
                     }
                 }
                 $data['showImg'] = empty($data['showImg']) ? '' : implode(';', $data['showImg']);
+                unset($data['add_time']);
                 if(!$this->db->name('works')->where(['id' => $id])->update($data)){
                     throw new \Exception('更新分享失败');
                 }
