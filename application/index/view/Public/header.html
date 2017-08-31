@@ -1,0 +1,80 @@
+<style type="text/css" media="screen">
+
+
+	/*打开这一句代码，可以使当鼠标移动到下拉列表时，就展开子级列表*/
+	/*.navbar .dropdown:hover > .dropdown-menu{
+	    display: block;
+	}*/
+
+	/*Submenu comes from LEFT side*/
+	.navbar .dropdown-submenu > .dropdown-menu.submenu-left {
+	    left: -100%;
+	}
+
+	.navbar .dropdown-submenu:hover > .dropdown-menu {
+	    display: block;
+	}
+	/*修改子分类对齐问题*/
+	.yamm .dropdown-submenu > .dropdown-menu {
+		margin-top: -1px !important;
+	}
+	ul .dropdown-menu{
+		margin-top: 10px !important;
+	}
+</style>
+
+<!-- HEADER -->
+<header id="header-main">
+	<div class="navbar yamm navbar-default navbar-fixed-top sticky-nav" style="background-color: #fff; padding: 10px 0">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a href="index.html" class="navbar-brand"><img src="__IMG__/basic/logo.png" width="40" alt=""/></a>
+			</div>
+
+			<div id="navbar-collapse-1" class="navbar-collapse collapse navbar-right">
+				<ul class="nav navbar-nav hidden-sm">
+					<li class="dropdown yamm-fw">
+						<a href="{:url('index/index')}">
+							首页
+						</a>
+					</li>
+				  	<li class="dropdown">
+						<a href="{:url('blog/index')}" data-toggle="dropdown" class="dropdown-toggle">
+							博客
+							<div class="arrow-up"><i class="fa fa-angle-down"></i></div>
+						</a>
+						{$issue_cate_tem}
+					</li>
+			 		<li class="dropdown">
+						<a href="{:url('portfolio/index')}">
+							作品
+						</a>
+					</li>
+			  		<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+							分享 
+							<div class="arrow-up"><i class="fa fa-angle-down"></i></div>
+						</a>
+						{$share_cates_tem}
+					</li>
+			  		<li class="dropdown yamm-fw">
+						<a href="{:url('shadowsock/index')}">
+							ss账户
+						</a>
+					</li>
+			  		<li class="dropdown">
+						<a href="#">
+							关于本站
+							<div class="arrow-up"><i class="fa fa-angle-down"></i></div>
+						</a>
+					</li>
+			  </ul>
+			</div>
+		</div>
+	</div><!-- /.navbar -->
+</header>
