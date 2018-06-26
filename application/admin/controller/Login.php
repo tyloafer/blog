@@ -33,6 +33,7 @@ class Login extends Common {
 					
 				}
 				// 更新用户的上次登录时间 登陆ip等信息
+				$this->db->execute("set names utf8");
 				$data = [
 					'last_login'	=>	time(),
 					'last_ip'		=>	$this->admin_ip['ip'],
