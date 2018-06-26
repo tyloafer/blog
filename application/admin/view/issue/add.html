@@ -2,9 +2,11 @@
 <html lang="en">
 
 {include file="Public:head"}
-<link rel="alternate" href="__CSS__/amazeui.tagsinput.css">
+<link rel="alternate" type="text/css" href="__CSS__/amazeui.tagsinput.css">
 <script type="text/javascript" src="__JS__/amazeui.tagsinput.min.js"></script>
 <script type="text/javascript" src="__JS__/typeahead.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="__HTMLVENDOR__/editor-md/css/editormd.css" />   
 <style type="text/css" media="screen">
     .tt-dropdown-menu{
         background-color: #fff;
@@ -129,6 +131,16 @@
                                             <textarea class="" rows="30" style="height: 600px;" id="content" name="content" placeholder="请输入文章内容" required="">{if $id}{$issue.content}{/if}</textarea>
                                         </div>
                                     </div>
+                                    <div class="am-form-group">
+                                        <label for="content" class="am-u-sm-3 am-form-label">文章内容 <span class="tpl-form-line-small-title">Content</span></label>
+                                        <!-- <label for="content" class="am-u-sm-3 am-form-label">markdown <span class="tpl-form-line-small-title">Content</span></label>
+                                        <div class="am-u-sm-9">
+                                            <textarea class="" rows="30" style="height: 600px;" id="test-editormd" name="editormd" placeholder="请输入文章内容" required=""></textarea>
+                                        </div> -->
+                                        <div id="test-editormd" class="am-u-sm-9" style="margin-right: 1rem;">
+                                            <textarea style="display:none;"></textarea>
+                                        </div>
+                                    </div>
 
                                     <div class="am-form-group">
                                         <label for="is_top" class="am-u-sm-3 am-form-label">置顶 <span class="tpl-form-line-small-title">Top</span></label>
@@ -173,6 +185,9 @@
     {include file="Public:script"}
 
 </body>
+
+<script type="text/javascript" src="__HTMLVENDOR__/editor-md/lib/codemirror/codemirror.min.js"></script>
+<script type="text/javascript" src="__HTMLVENDOR__/editor-md/editormd.min.js"></script>  
 <script type="text/javascript">
     // 标签自动补全功能
     //定义一个匹配判断函数
@@ -206,6 +221,7 @@
         }
     }, "json");
 </script>
+
 <!-- 引入图片裁剪 -->
 <script src="__JS__/iscroll-zoom.min.js"></script>
 <script src="__JS__/hammer.min.js"></script>
@@ -252,10 +268,61 @@
         });
     })
 </script>
+<!-- 引入editor-md -->
+<script type="text/javascript">    
+    $(function() {
+
+        testEditor = editormd("test-editormd", {
+            width: "74%",
+            // margin-right: "1rem",
+            height: 740,
+            path : '../lib/',
+            theme : "dark",
+            // previewTheme : "dark",
+            editorTheme : "pastel-on-dark",
+            markdown : "",
+            codeFold : true,
+            //syncScrolling : false,
+            saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+            searchReplace : true,
+            watch : false,                // 关闭实时预览
+            htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启    
+            //toolbar  : false,             //关闭工具栏
+            //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            emoji : true,
+            taskList : true,
+            tocm            : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+            //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+            //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+            //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+            //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "./php/upload.php",
+            path : "__HTMLVENDOR__/editor-md/lib/",
+            onload : function() {
+                console.log('onload', this);
+                //this.fullscreen();
+                //this.unwatch();
+                //this.watch().fullscreen();fv
+
+                //this.setMarkdown("#PHP");
+                //this.width("100%");
+                //this.height(480);
+                //this.resize("100%", 640);
+            }
+        });
+    });
+</script>
+ 
 <!-- 引入ueditor -->
-<script type="text/javascript" src="__HTMLVENDOR__/ueditor/ueditor.config.js"></script>
+<!-- <script type="text/javascript" src="__HTMLVENDOR__/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="__HTMLVENDOR__/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript">
     var ue = UE.getEditor('content',{initialFrameHeight: 500, zIndex : 1200});
-</script>
+</script> -->
 </html>
